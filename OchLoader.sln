@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OchLoader", "OchLoader\OchLoader.csproj", "{2FF7BD53-6F83-4220-956D-C2DDF30B9CA0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OchLoader.Test", "OchLoader.Test\OchLoader.Test.csproj", "{745072B3-7A49-4FDE-B74E-A924DC9B31B2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{2FF7BD53-6F83-4220-956D-C2DDF30B9CA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2FF7BD53-6F83-4220-956D-C2DDF30B9CA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2FF7BD53-6F83-4220-956D-C2DDF30B9CA0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{745072B3-7A49-4FDE-B74E-A924DC9B31B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{745072B3-7A49-4FDE-B74E-A924DC9B31B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{745072B3-7A49-4FDE-B74E-A924DC9B31B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{745072B3-7A49-4FDE-B74E-A924DC9B31B2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
