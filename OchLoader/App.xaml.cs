@@ -10,9 +10,9 @@ namespace OchLoader
   /// </summary>
   public partial class App : Application
   {
-    private ILifetimeScope _scope;
-
     private static IContainer container;
+
+    private ILifetimeScope _scope;
 
     public static IContainer Container
     {
