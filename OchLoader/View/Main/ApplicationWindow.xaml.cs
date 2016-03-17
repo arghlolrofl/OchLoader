@@ -1,5 +1,5 @@
 ﻿using System.Windows;
-using OchLoader.ViewModel;
+using OchLoader.ViewModel.Main;
 
 namespace OchLoader.View.Main
 {

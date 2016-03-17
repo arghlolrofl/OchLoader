@@ -12,8 +12,8 @@
   See http://www.galasoft.ch/mvvm
 */
 
-using GalaSoft.MvvmLight.Ioc;
-using Microsoft.Practices.ServiceLocation;
+using Autofac;
+using OchLoader.ViewModel.Main;
 
 namespace OchLoader.ViewModel
 {
@@ -23,32 +23,27 @@ namespace OchLoader.ViewModel
   /// </summary>
   public class ViewModelLocator
   {
+    static readonly ILifetimeScope _scope;
+
+    static ViewModelLocator()
+    {
+      if (_scope == null)
+        _scope = App.Container.BeginLifetimeScope();
+    }
+
     /// <summary>
     /// Initializes a new instance of the ViewModelLocator class.
     /// </summary>
     public ViewModelLocator()
     {
-      ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
-      ////if (ViewModelBase.IsInDesignModeStatic)
-      ////{
-      ////    // Create design time view services and models
-      ////    SimpleIoc.Default.Register<IDataService, DesignDataService>();
-      ////}
-      ////else
-      ////{
-      ////    // Create run time view services and models
-      ////    SimpleIoc.Default.Register<IDataService, DataService>();
-      ////}
-
-      SimpleIoc.Default.Register<ApplicationViewModel>();
     }
 
     public ApplicationViewModel Main
     {
       get
       {
-        return ServiceLocator.Current.GetInstance<ApplicationViewModel>();
+        return _scope.Resolve<ApplicationViewModel>();
       }
     }
 
