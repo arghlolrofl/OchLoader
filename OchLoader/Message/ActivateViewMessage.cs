@@ -11,5 +11,10 @@ namespace OchLoader.Message
       get { return viewModelType; }
       private set { viewModelType = value; }
     }
+
+    public ActivateViewMessage(Type t)
+    {
+      ViewModelType = t;
+    }
   }
 }

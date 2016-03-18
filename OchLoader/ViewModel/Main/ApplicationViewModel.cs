@@ -1,8 +1,8 @@
-using System;
 using Autofac;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Messaging;
 using OchLoader.Message;
+using OchLoader.ViewModel.Start;
 
 namespace OchLoader.ViewModel.Main
 {
@@ -43,9 +43,27 @@ namespace OchLoader.ViewModel.Main
       Messenger.Default.Register<ActivateViewMessage>(this, HandleViewRequest);
     }
 
-    private void HandleViewRequest(ActivateViewMessage obj)
+    private void HandleViewRequest(ActivateViewMessage msg)
     {
-      throw new NotImplementedException();
+      //MethodInfo methodInfo = this.GetType().GetMethod("Cast").MakeGenericMethod(msg.ViewModelType);
+
+      object viewModelObject = _scope.Resolve(msg.ViewModelType);
+
+      //FocusedViewModel = (ViewModelBase)viewModelObject;
+
+      switch (msg.ViewModelType.Name)
+      {
+        case nameof(StartViewModel):
+          FocusedViewModel = (StartViewModel)viewModelObject;
+          break;
+        default:
+          break;
+      }
+    }
+
+    private static T Cast<T>(object obj)
+    {
+      return (T)obj;
     }
   }
 }

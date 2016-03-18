@@ -75,9 +75,7 @@ namespace OchLoader
       _scope = Container.BeginLifetimeScope();
       _scope.Resolve<ApplicationWindow>().Show();
 
-      var m = new ActivateViewMessage<StartViewModel>();
-
-      Messenger.Default.Send(new ActivateViewMessage<StartViewModel>());
+      Messenger.Default.Send(new ActivateViewMessage(typeof(StartViewModel)));
     }
   }
 }

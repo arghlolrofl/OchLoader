@@ -4,9 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OchLoader.View.Main"
+        xmlns:vmStart="clr-namespace:OchLoader.ViewModel.Start"
+        xmlns:viewStart="clr-namespace:OchLoader.View.Start"
         mc:Ignorable="d"
         Title="ApplicationWindow" Height="300" Width="300">
-    <Grid>
-        
-    </Grid>
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type vmStart:StartViewModel}">
+            <viewStart:StartView />
+        </DataTemplate>
+    </Window.Resources>
+    <ContentControl Content="{Binding Path=FocusedViewModel}" />
 </Window>
