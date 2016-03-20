@@ -7,23 +7,22 @@ using OchLoader.Contracts;
 using OchLoader.Message;
 using OchLoader.Model.Search;
 using OchLoader.View.Main;
-using OchLoader.ViewModel.Start;
+using OchLoader.Model;
+using OchLoader.View.Search;
+using OchLoader.ViewModel.Search;
+using OchLoader.View.Episodes;
 
-namespace OchLoader
-{
+namespace OchLoader {
   /// <summary>
   /// Interaction logic for App.xaml
   /// </summary>
-  public partial class App : Application
-  {
+  public partial class App : Application {
     private static IContainer container;
 
     private ILifetimeScope _scope;
 
-    public static IContainer Container
-    {
-      get
-      {
+    public static IContainer Container {
+      get {
         if (container == null)
           Bootstrap();
 
@@ -34,33 +33,27 @@ namespace OchLoader
     /// <summary>
     /// Creates the IoC-Container for the application
     /// </summary>
-    private static void Bootstrap()
-    {
+    private static void Bootstrap() {
       ContainerBuilder builder = new ContainerBuilder();
-
-      //if (ViewModelBase.IsInDesignModeStatic)
-      //{
-      //    // Create design time view services and models
-      //    SimpleIoc.Default.Register<IDataService, DesignDataService>();
-      //}
-      //else
-      //{
-      //    // Create run time view services and models
-      //    SimpleIoc.Default.Register<IDataService, DataService>();
-      //}
 
       // Views
       builder.RegisterType<ApplicationWindow>().SingleInstance();
+      builder.RegisterType<SearchView>().SingleInstance();
+      builder.RegisterType<EpisodesView>().SingleInstance();
 
       // ViewModels
       builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
-        .Where((t) => t.IsSubclassOf(typeof(ViewModelBase)))
-        .SingleInstance();
+             .Where((t) => t.IsSubclassOf(typeof(ViewModelBase)))
+             .SingleInstance();
 
       // Entities
       builder.RegisterType<KinoxContentSearch>().As<IContentSearch>();
+      builder.RegisterType<GlobalSearchResultKinox>().As<IGlobalSearchResult>();
+      builder.RegisterType<Series>();
+      builder.RegisterType<Season>().As<ISeason>();
 
       // Others
+      builder.RegisterType<WebRequest>();
 
       container = builder.Build();
     }
@@ -70,12 +63,11 @@ namespace OchLoader
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    private void Application_Startup(object sender, StartupEventArgs e)
-    {
+    private void Application_Startup(object sender, StartupEventArgs e) {
       _scope = Container.BeginLifetimeScope();
       _scope.Resolve<ApplicationWindow>().Show();
 
-      Messenger.Default.Send(new ActivateViewMessage(typeof(StartViewModel)));
+      Messenger.Default.Send(new ActivateViewMessage(typeof(SearchViewModel)));
     }
   }
 }

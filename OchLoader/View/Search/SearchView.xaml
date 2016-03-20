@@ -1,0 +1,41 @@
+﻿<UserControl x:Class="OchLoader.View.Search.SearchView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:OchLoader.View.Search"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="800">
+    <Grid Margin="0,10,0,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="26" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.ColumnSpan="2">
+            <Label Content="Search Text:" FontFamily="Courier New" FontSize="16" />
+            <TextBox Text="{Binding Path=SearchString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     Width="200" FontFamily="Courier New" FontSize="16" />
+            <Button Content="Search" Margin="10,0,0,0" FontFamily="Courier New" FontSize="16" Command="{Binding Path=InitialSearchCommand}" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Column="2" HorizontalAlignment="Right">
+            <Button Content="Episodes >>" FontFamily="Courier New" FontSize="16" Margin="0,0,5,0" Command="{Binding Path=SwitchToEpisodesViewCommand}" IsEnabled="{Binding Path=CanSwitchToSubView}" />
+        </StackPanel>
+        <ListView Grid.Row="2" Grid.RowSpan="1" Grid.ColumnSpan="3" FontFamily="Courier New" FontSize="16" ItemsSource="{Binding Path=ListOfSearchResults}" SelectedItem="{Binding Path=SelectedSearchResult}" BorderBrush="White">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Language" DisplayMemberBinding="{Binding Path=Language}" Width="200" />
+                    <GridViewColumn Header="Type" DisplayMemberBinding="{Binding Path=Type}" Width="100" />
+                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Path=Name}" Width="350" />
+                    <GridViewColumn Header="Year" DisplayMemberBinding="{Binding Path=Year}" Width="65" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+        
+    </Grid>
+</UserControl>

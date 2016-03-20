@@ -14,42 +14,51 @@
 
 using Autofac;
 using OchLoader.ViewModel.Main;
+using OchLoader.ViewModel.Start;
 
 namespace OchLoader.ViewModel
 {
-  /// <summary>
-  /// This class contains static references to all the view models in the
-  /// application and provides an entry point for the bindings.
-  /// </summary>
-  public class ViewModelLocator
-  {
-    static readonly ILifetimeScope _scope;
-
-    static ViewModelLocator()
-    {
-      if (_scope == null)
-        _scope = App.Container.BeginLifetimeScope();
-    }
-
     /// <summary>
-    /// Initializes a new instance of the ViewModelLocator class.
+    /// This class contains static references to all the view models in the
+    /// application and provides an entry point for the bindings.
     /// </summary>
-    public ViewModelLocator()
+    public class ViewModelLocator
     {
+        static readonly ILifetimeScope _scope;
 
-    }
+        static ViewModelLocator()
+        {
+            if (_scope == null)
+                _scope = App.Container.BeginLifetimeScope();
+        }
 
-    public ApplicationViewModel Main
-    {
-      get
-      {
-        return _scope.Resolve<ApplicationViewModel>();
-      }
-    }
+        /// <summary>
+        /// Initializes a new instance of the ViewModelLocator class.
+        /// </summary>
+        public ViewModelLocator()
+        {
 
-    public static void Cleanup()
-    {
-      // TODO Clear the ViewModels
+        }
+
+        public ApplicationViewModel ApplicationViewModel
+        {
+            get
+            {
+                return _scope.Resolve<ApplicationViewModel>();
+            }
+        }
+
+        public StartViewModel StartViewModel
+        {
+            get
+            {
+                return _scope.Resolve<StartViewModel>();
+            }
+        }
+
+        public static void Cleanup()
+        {
+            // TODO Clear the ViewModels
+        }
     }
-  }
 }

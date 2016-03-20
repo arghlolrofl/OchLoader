@@ -5,6 +5,6 @@ namespace OchLoader.Contracts
 {
   public interface IContentSearch
   {
-    IList<Uri> SearchFor(string searchString);
+    IList<IGlobalSearchResult> SearchFor(string searchString);
   }
 }

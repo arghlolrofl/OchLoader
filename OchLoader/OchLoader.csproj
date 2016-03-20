@@ -39,10 +39,6 @@
       <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Autofac.Extras.CommonServiceLocator, Version=3.2.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
-      <HintPath>..\packages\Autofac.Extras.CommonServiceLocator.3.2.0\lib\net40\Autofac.Extras.CommonServiceLocator.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="GalaSoft.MvvmLight, Version=5.2.0.37222, Culture=neutral, PublicKeyToken=e7570ab207bcb616, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmLightLibs.5.2.0.0\lib\net45\GalaSoft.MvvmLight.dll</HintPath>
       <Private>True</Private>
@@ -87,18 +83,30 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Contracts\Enums\MediaType.cs" />
+    <Compile Include="Contracts\Enums\MediaLanguage.cs" />
     <Compile Include="Contracts\IContentSearch.cs" />
+    <Compile Include="Contracts\IGlobalSearchResult.cs" />
     <Compile Include="Contracts\IMessage.cs" />
+    <Compile Include="Contracts\ISeason.cs" />
+    <Compile Include="Contracts\WebRequest.cs" />
     <Compile Include="Message\ActivateViewMessage.cs" />
+    <Compile Include="Model\GlobalSearchResultKinox.cs" />
+    <Compile Include="Model\Mirror.cs" />
     <Compile Include="Model\Search\KinoxContentSearch.cs" />
+    <Compile Include="Model\Season.cs" />
+    <Compile Include="Model\Series.cs" />
+    <Compile Include="ViewModel\Episodes\EpisodesViewModel.cs" />
     <Compile Include="ViewModel\Main\ApplicationViewModel.cs" />
-    <Compile Include="ViewModel\Start\StartViewModel.cs" />
-    <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Compile Include="ViewModel\Search\SearchViewModel.cs" />
+    <Compile Include="View\Episodes\EpisodesView.xaml.cs">
+      <DependentUpon>EpisodesView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Main\ApplicationWindow.xaml.cs">
       <DependentUpon>ApplicationWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Start\StartView.xaml.cs">
-      <DependentUpon>StartView.xaml</DependentUpon>
+    <Compile Include="View\Search\SearchView.xaml.cs">
+      <DependentUpon>SearchView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -129,13 +137,16 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
+    <Page Include="View\Episodes\EpisodesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Main\ApplicationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Start\StartView.xaml">
+    <Page Include="View\Search\SearchView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
