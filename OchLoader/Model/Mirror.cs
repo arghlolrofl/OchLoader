@@ -16,7 +16,7 @@ namespace OchLoader.Model {
     Series _series;
     int _seasonNumber, _episodeNumber;
 
-    public string HosterId { get; set; }
+    public int HosterId { get; set; }
     public string HosterName { get; set; }
     public int Number { get; set; }
     public string Url { get {

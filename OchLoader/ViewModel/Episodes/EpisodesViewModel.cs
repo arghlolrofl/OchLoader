@@ -25,6 +25,7 @@ namespace OchLoader.ViewModel.Episodes {
     private readonly ILifetimeScope _scope;
     private readonly SearchViewModel _parent;
     private readonly WebClient webClient = new WebClient();
+    private readonly IList<int> _supportedHosters = new List<int>() { 30, 31 };
 
     // Series Info
     const string PatternSeriesInfo = @"<select.+?""SeasonSelection"" rel=""\?Addr=(?<addr>.+?)&amp;SeriesID=(?<seriesId>[\d]+?)"".+?(?<seasons><option value=""1"".+?)</select>";
@@ -169,9 +170,12 @@ namespace OchLoader.ViewModel.Episodes {
 
       MatchCollection matches = regexMirrorInfo.Matches(response);
       foreach (Match match in matches) {
-        string hosterId = match.Groups["hosterId"].Value;
+        int hosterId = Convert.ToInt32(match.Groups["hosterId"].Value);
         string hosterName = match.Groups["hosterName"].Value;
         string mirrorCount = match.Groups["count"].Value;
+
+        if (!_supportedHosters.Contains(hosterId))
+          continue;
 
         int count = 0;
         if (!Int32.TryParse(mirrorCount, out count))
